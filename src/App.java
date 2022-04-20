@@ -10,7 +10,8 @@ import javax.swing.JPanel;
 
 public class App extends JFrame {
 
-    public App(){
+    public App(String nome){
+        super(nome);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(400 , 400);
 
@@ -29,7 +30,7 @@ public class App extends JFrame {
             frame = parrentComponent;
 
             try {
-                background = ImageIO.read(new File("immagini/prato2.jpg"));
+                background = ImageIO.read(new File("immagini/sky.jpg"));
             } catch (IOException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
@@ -49,6 +50,6 @@ public class App extends JFrame {
     }
 
     public static void main(String[] args) throws Exception {
-        new App();
+        new App("HappyBirds");
     }
 }

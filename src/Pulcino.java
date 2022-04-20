@@ -18,6 +18,7 @@ public class Pulcino extends JPanel implements Runnable{
 
     private Animation sprite;
     private Animation sprite_reverse;
+    private int widht;
 
     public Pulcino(JFrame parentComponent){
         frame = parentComponent;
@@ -25,19 +26,25 @@ public class Pulcino extends JPanel implements Runnable{
         sprite = new Animation(this , 100 , false);
         sprite_reverse = new Animation(this, 100, true);
 
+        widht = this.RandomSize(50 , 200);
 
         x = (int) (Math.random() * (frame.getWidth() - 120) + 1);
         y = (int) (Math.random() * (frame.getHeight() - 120) + 1);
 
         mod = (int) (Math.random() * 6) + 1;
 
-        this.setPreferredSize(new Dimension(100 , 100));
         this.setVisible(true);
         this.setOpaque(false);
 
 
         t = new Thread(this);
         t.start();
+    }
+    public int RandomSize(int min , int max){
+        int random = (int) (Math.random() * (max - min) + 1) + min;
+        this.setPreferredSize(new Dimension(random , random));
+
+        return(random);
     }
 
     public void SelectTypeMod(int mod){
@@ -87,7 +94,7 @@ public class Pulcino extends JPanel implements Runnable{
     public void run() {
         while(true){
             SelectTypeMod(mod);
-            if(x >= (frame.getWidth() - 110)){
+            if(x >= (frame.getWidth() - (widht))){
                 while(mod <= 3)
                     mod = (int) (Math.random() * 6) + 1;
             }
@@ -95,7 +102,7 @@ public class Pulcino extends JPanel implements Runnable{
                 while(mod >= 4 && mod <= 6)
                     mod = (int) (Math.random() * 6) + 1;
             }
-            if(y >= (frame.getHeight() - 130)){
+            if(y >= (frame.getHeight() - (widht))){
                 while(mod == 8 || mod == 5 || mod == 2)
                     mod = (int) (Math.random() * 6) + 1;
             }
